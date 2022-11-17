@@ -19,7 +19,7 @@ RUN \
  echo "**** ls ****" && \
  sudo ls && \
  echo "********" && \
- sudo cd build && \
+ sudo cd inkscape && \
  echo "**** ls ****" && \
  sudo ls && \
  echo "********"
