@@ -1,0 +1,42 @@
+name: Build and Push to GH
+
+on:
+  push:
+    branches: [ "main" ]
+    
+env:
+  IMAGE_NAME: inkscape
+  
+jobs:
+  push:
+    runs-on: ubuntu-latest
+    permissions:
+      packages: write
+      contents: read
+    
+    steps:
+      - uses: actions/checkout@v2
+      
+      - name: Assign var to ENV
+        run: |
+          cat ./buildvars >> $GITHUB_ENV
+          
+      - name: Build image
+        run: |
+          docker build --build-arg VERSION=$version --build-arg BUILD_DATE=$date -t $IMAGE_NAME:$version .
+          
+      - name: Log into registry
+        run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
+        
+      - name: Push image
+        run: |
+          IMAGE_ID=ghcr.io/${{ github.repository_owner }}/$IMAGE_NAME
+          IMAGE_ID=$(echo $IMAGE_ID | tr '[A-Z]' '[a-z]')
+          VERSION=$version
+          echo IMAGE_ID=$IMAGE_ID
+          echo VERSION=$version
+          
+          echo $IMAGE_ID
+          echo $VERSION
+          docker tag $IMAGE_NAME:$VERSION $IMAGE_ID:$VERSION
+          docker push $IMAGE_ID:$VERSION
