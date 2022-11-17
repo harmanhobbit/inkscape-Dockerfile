@@ -17,9 +17,9 @@ RUN \
  sudo mv 'download?job=inkscape:linux' inkscape && \
  sudo unzip inkscape && \
  echo "**** ls ****" && \
- sudo ls && \
+ sudo ls -l && \
  echo "********" && \
- sudo cd inkscape && \
+ sudo cd build && \
  echo "**** ls ****" && \
  sudo ls && \
  echo "********"
