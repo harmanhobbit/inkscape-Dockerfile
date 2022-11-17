@@ -16,9 +16,13 @@ RUN \
  sudo wget https://gitlab.com/inkscape/inkscape/-/jobs/artifacts/1.2.x/download?job=inkscape%3Alinux && \
  sudo mv 'download?job=inkscape:linux' inkscape && \
  sudo unzip inkscape && \
+ echo "**** ls ****" && \
  sudo ls && \
+ echo "********" && \
  sudo cd build && \
- sudo ls 
+ echo "**** ls ****" && \
+ sudo ls && \
+ echo "********"
 # sudo mv inkscape-1.2.1_2022-11-17_0788570.deb inkscape.deb && \
 # sudo dpkg-deb -R inkscape.deb inkscape && \
 # sudo sed -i 's/1.2.1-$/1.2.1-1/;s/all$/amd64/;s/java$/libs/' && \
