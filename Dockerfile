@@ -31,7 +31,7 @@ RUN \
  echo "********" && \
  sudo mv inkscape-1.2.1_2022-11-17_0788570.deb inkscape.deb && \
  sudo dpkg-deb -R inkscape.deb inkscape && \
- sudo sed -i 's/1.2.1-$/1.2.1-1/;s/all$/amd64/;s/java$/libs/' && \
+ sudo sed -i 's/1.2.1-$/1.2.1-1/;s/all$/amd64/;s/java$/libs/' inkscape/DEBIAN/control&& \
  sudo dpkg-deb -b inkscape .
 
 FROM ghcr.io/linuxserver/baseimage-rdesktop-web:jammy
