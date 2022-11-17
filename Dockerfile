@@ -20,7 +20,7 @@ RUN \
 RUN \
  echo "**** fix version number ****" &&\
  sudo cd build && \
- sudo mv inkscape-*.deb inkscape.deb && \
+ sudo mv inkscape-1.2.1_2022-11-17_0788570.deb inkscape.deb && \
  sudo dpkg-deb -R inkscape.deb inkscape && \
  sudo sed -i 's/0.0.2-$/0.0.2-1/;s/all$/amd64/;s/java$/libs/' && \
  sudo dpkg-deb -b inkscape .
