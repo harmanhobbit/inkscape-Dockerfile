@@ -18,20 +18,20 @@ RUN \
  sudo unzip inkscape && \
  sudo cd build && \
  sudo ls && \
- sudo mv inkscape-1.2.1_2022-11-17_0788570.deb inkscape.deb && \
- sudo dpkg-deb -R inkscape.deb inkscape && \
- sudo sed -i 's/0.0.2-$/0.0.2-1/;s/all$/amd64/;s/java$/libs/' && \
- sudo dpkg-deb -b inkscape .
+# sudo mv inkscape-1.2.1_2022-11-17_0788570.deb inkscape.deb && \
+# sudo dpkg-deb -R inkscape.deb inkscape && \
+# sudo sed -i 's/1.2.1-$/1.2.1-1/;s/all$/amd64/;s/java$/libs/' && \
+# sudo dpkg-deb -b inkscape .
 
-FROM ghcr.io/linuxserver/baseimage-rdesktop-web:jammy
-
-COPY --from=0 /inkscape/build/inkscape.deb ./
-
-RUN \
- sudo apt-get update && \
-# sudo apt-get upgrade -y && \
- sudo dpkg -i inkscape.deb && \
- sudo rm inkscape*.deb
+#FROM ghcr.io/linuxserver/baseimage-rdesktop-web:jammy
+#
+#COPY --from=0 /inkscape/build/inkscape.deb ./
+#
+#RUN \
+# sudo apt-get update && \
+## sudo apt-get upgrade -y && \
+# sudo dpkg -i inkscape.deb && \
+# sudo rm inkscape*.deb
 
 # add local files
 COPY /root /
