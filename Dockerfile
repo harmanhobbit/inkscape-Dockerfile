@@ -16,13 +16,16 @@ RUN \
  sudo wget https://gitlab.com/inkscape/inkscape/-/jobs/artifacts/1.2.x/download?job=inkscape%3Alinux && \
  sudo mv 'download?job=inkscape:linux' inkscape && \
  sudo unzip inkscape
+ sudo dpkg-deb -R inkscape-*.deb inkscape
+ sudo sed -i 's/0.0.2-$/0.0.2-1/;s/all$/amd64/;s/java$/libs/'
+ sudo dpkg-deb -b inkscape .
 # cd build
 # sudo mv inkscape-*.deb inkscape.deb
 
 
 FROM ghcr.io/linuxserver/baseimage-rdesktop-web:jammy
 
-COPY --from=0 /inkscape/build/inkscape*.deb ./
+COPY --from=0 /inkscape/build/inkscape.deb ./
 
 RUN \
  sudo apt-get update && \
