@@ -19,7 +19,9 @@ RUN \
  echo "**** ls ****" && \
  sudo ls -l && \
  echo "********" && \
+ sudo pwd && \
  sudo cd build && \
+ sudo pwd && \
  echo "**** ls ****" && \
  sudo ls && \
  echo "********"
