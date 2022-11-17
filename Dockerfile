@@ -33,7 +33,7 @@ COPY --from=0 /inkscape/build/inkscape.deb ./
 RUN \
  sudo apt-get update && \
 # sudo apt-get upgrade -y && \
- sudo dpkg -i inkscape*.deb && \
+ sudo dpkg -i inkscape.deb && \
  sudo rm inkscape*.deb
 
 # add local files
