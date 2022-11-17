@@ -16,18 +16,12 @@ RUN \
  sudo wget https://gitlab.com/inkscape/inkscape/-/jobs/artifacts/1.2.x/download?job=inkscape%3Alinux && \
  sudo mv 'download?job=inkscape:linux' inkscape && \
  sudo unzip inkscape
- 
-RUN \
- echo "**** fix version number ****" &&\
- sudo pwd && \
  sudo cd inkscape/build && \
  sudo ls 
-# sudo mv inkscape-1.2.1_2022-11-17_0788570.deb inkscape.deb && \
-# sudo dpkg-deb -R inkscape.deb inkscape && \
-# sudo sed -i 's/0.0.2-$/0.0.2-1/;s/all$/amd64/;s/java$/libs/' && \
-# sudo dpkg-deb -b inkscape .
-# cd build
-
+ sudo mv inkscape-1.2.1_2022-11-17_0788570.deb inkscape.deb && \
+ sudo dpkg-deb -R inkscape.deb inkscape && \
+ sudo sed -i 's/0.0.2-$/0.0.2-1/;s/all$/amd64/;s/java$/libs/' && \
+ sudo dpkg-deb -b inkscape .
 
 FROM ghcr.io/linuxserver/baseimage-rdesktop-web:jammy
 
