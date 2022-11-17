@@ -1,9 +1,9 @@
-#sudo docker build --no-cache -t puredata:<version> .
+#sudo docker build -t inkscape:<version> .
 FROM ghcr.io/linuxserver/baseimage-rdesktop-web:jammy
 
 # set version label
 ARG BUILD_DATE="17-NOV-2022"
-ARG VERSION="0.0.6"
+ARG VERSION="0.0.7"
 LABEL build_version="version:- ${VERSION} Build-date:- ${BUILD_DATE}"
 LABEL maintainer="harmanhobbit"
 
@@ -11,39 +11,8 @@ RUN \
  echo "**** get packages ****" && \
  sudo apt-get update && \
 # sudo apt-get upgrade -y && \
- sudo apt-get install -y wget unzip nano && \
- sudo mkdir inkscape && \
- echo "**** ls ****" && \
- sudo ls -l && \
- echo "********" && \
- cd inkscape && \
- sudo wget https://gitlab.com/inkscape/inkscape/-/jobs/artifacts/1.2.x/download?job=inkscape%3Alinux && \
- sudo mv 'download?job=inkscape:linux' inkscape && \
- sudo unzip inkscape && \
- echo "**** ls ****" && \
- sudo ls -l && \
- echo "********" && \
- sudo pwd && \
- cd build && \
- sudo pwd && \
- echo "**** ls ****" && \
- sudo ls && \
- echo "********" && \
- sudo mv inkscape-1.2.1_2022-11-17_0788570.deb inkscape.deb && \
- sudo dpkg-deb -R inkscape.deb inkscape && \
- sudo sed -i 's/1.2.1-$/1.2.1-1/;s/all$/amd64/;s/java$/libs/' inkscape/DEBIAN/control&& \
- sudo dpkg-deb -b inkscape .
-
-FROM ghcr.io/linuxserver/baseimage-rdesktop-web:jammy
-
-COPY --from=0 /inkscape/build/inkscape.deb ./
-
-RUN \
- sudo apt-get update && \
-# sudo apt-get upgrade -y && \
- sudo dpkg -i inkscape.deb && \
- sudo rm inkscape*.deb
-
+ sudo apt-get install -y inkscape
+ 
 # add local files
 COPY /root /
 
