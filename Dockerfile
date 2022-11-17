@@ -24,7 +24,7 @@ RUN \
  sudo ls -l && \
  echo "********" && \
  sudo pwd && \
- sudo cd /inkscape/build && \
+ cd build && \
  sudo pwd && \
  echo "**** ls ****" && \
  sudo ls && \
