@@ -15,11 +15,11 @@ RUN \
  sudo mkdir inkscape && cd inkscape && \
  sudo wget https://gitlab.com/inkscape/inkscape/-/jobs/artifacts/1.2.x/download?job=inkscape%3Alinux && \
  sudo mv 'download?job=inkscape:linux' inkscape && \
- sudo unzip inkscape && \
- sudo mv inkscape-*.deb inkscape.deb
+ sudo unzip inkscape
  
 RUN \
  echo "**** fix version number ****" &&\
+ sudo mv inkscape-*.deb inkscape.deb && \
  sudo dpkg-deb -R inkscape.deb inkscape && \
  sudo sed -i 's/0.0.2-$/0.0.2-1/;s/all$/amd64/;s/java$/libs/' && \
  sudo dpkg-deb -b inkscape .
