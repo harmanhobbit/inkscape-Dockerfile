@@ -13,9 +13,9 @@ RUN \
 # sudo apt-get upgrade -y && \
  sudo apt-get install -y wget unzip nano && \
  sudo mkdir inkscape && cd inkscape && \
- sudo wget https://gitlab.com/inkscape/inkscape/-/jobs/artifacts/1.2.x/download?job=inkscape%3Alinux && \
- sudo mv 'download?job=inkscape:linux' inkscape && \
- sudo unzip inkscape && \
+# sudo wget https://gitlab.com/inkscape/inkscape/-/jobs/artifacts/1.2.x/download?job=inkscape%3Alinux && \
+# sudo mv 'download?job=inkscape:linux' inkscape && \
+# sudo unzip inkscape && \
  echo "**** ls ****" && \
  sudo ls && \
  echo "********" && \
